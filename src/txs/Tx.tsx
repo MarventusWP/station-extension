@@ -343,15 +343,6 @@ function Tx<TxValues>(props: Props<TxValues>) {
             </Fragment>
           ))}
 
-          {has(taxAmount) && (
-            <>
-              <dt>{t("Tax")}</dt>
-              <dd>
-                <Read amount={taxAmount} token={token} />
-              </dd>
-            </>
-          )}
-
           {!!taxes.length && (
             <>
               <dt>{t("Tax")}</dt>

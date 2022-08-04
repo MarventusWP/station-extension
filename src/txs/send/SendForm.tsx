@@ -100,8 +100,7 @@ const SendForm = ({ token, decimals, balance }: Props) => {
   )
 
   /* fee */
-  const taxes = calcTaxes([{input, denom:token}] as CoinInput[], taxParams)
-  console.log('calculated taxes:', taxes);
+  const taxes = calcTaxes([{ input, denom: token }] as CoinInput[], taxParams)
   const estimationTxValues = useMemo(
     () => ({ address: connectedAddress, input: toInput(1, decimals) }),
     [connectedAddress, decimals]
