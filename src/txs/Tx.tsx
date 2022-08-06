@@ -343,7 +343,7 @@ function Tx<TxValues>(props: Props<TxValues>) {
             </Fragment>
           ))}
 
-          {!!taxes.length && (
+          {!!isClassic && (
             <>
               <dt>{t("Tax")}</dt>
               <dd>
@@ -352,6 +352,9 @@ function Tx<TxValues>(props: Props<TxValues>) {
                     <Read {...coin} />
                   </p>
                 ))}
+                {!taxes.length && (
+                  <Read amount="0" token={token} decimals={decimals} />
+                )}
               </dd>
             </>
           )}
@@ -527,7 +530,7 @@ export const calcMinimumTaxAmount = (
     cap
   ).integerValue(BigNumber.ROUND_FLOOR)
 
-  return tax.gt(0) ? tax.toString() : undefined
+  return tax.gt(0) ? tax.toString() : "undefined"
 }
 
 /* hooks */
