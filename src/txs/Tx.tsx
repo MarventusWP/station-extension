@@ -525,12 +525,9 @@ export const calcMinimumTaxAmount = (
   amount: BigNumber.Value,
   { rate, cap }: { rate: BigNumber.Value; cap: BigNumber.Value }
 ) => {
-  const tax = BigNumber.min(
-    new BigNumber(amount).times(rate),
-    cap
-  ).integerValue(BigNumber.ROUND_FLOOR)
-
-  return tax.gt(0) ? tax.toString() : "undefined"
+  return BigNumber.min(new BigNumber(amount).times(rate), cap)
+    .integerValue(BigNumber.ROUND_FLOOR)
+    .toString()
 }
 
 /* hooks */
