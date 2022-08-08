@@ -26,16 +26,11 @@ export const getCoins = (coins: CoinInput[]) => {
 }
 
 export interface TaxParams {
-  taxRate: string
-  taxCaps: Record<Denom, Amount>
+  taxRate: string | undefined
+  taxCaps?: Record<Denom, Amount | undefined> | undefined
 }
 
-export const calcTaxes = (
-  coins: CoinInput[],
-  { taxRate, taxCaps }: TaxParams
-) => {
-  if (!new BigNumber(taxRate).gt(0)) return
-
+export const calcTaxes = (coins: CoinInput[], { taxRate }: TaxParams) => {
   return new Coins(
     coins
       .filter(({ input, denom }) => {
@@ -45,8 +40,8 @@ export const calcTaxes = (
       .map(({ input, denom }) => {
         const amount = toAmount(input)
         const tax = calcMinimumTaxAmount(amount, {
-          rate: taxRate,
-          cap: taxCaps[denom],
+          rate: taxRate || "0",
+          cap: denom,
         })
 
         if (!tax) throw new Error()
