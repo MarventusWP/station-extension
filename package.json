@@ -8,7 +8,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build-scripts": "webpack --config scripts/webpack.config.js",
+    "build-scripts:prod": "webpack --mode production --config scripts/webpack.config.js",
     "build": "cross-env react-app-rewired build && npm run build-scripts",
+    "build:prod": "cross-env react-app-rewired build && npm run build-scripts:prod",
     "test": "react-scripts test",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
